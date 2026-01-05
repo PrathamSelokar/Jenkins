@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage('git-pull') {
+            steps {
+                git branch: '*/main', credentialsId: 'ssh-cred', url: 'https://github.com/PrathamSelokar/Simple_Notes.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo "build-sucess"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "test sucess"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "deploy sucess"
+            }
+        }
+    }
+}
