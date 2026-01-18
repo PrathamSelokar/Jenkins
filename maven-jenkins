@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage('git-pull') {
+            steps {
+                git branch: 'main', url: 'https://github.com/PrathamSelokar/Jenkins.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                 sh '/opt/maven/bin/mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh '/opt/maven/bin/mvn test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "deploy sucess"
+            }
+        }
+    }
+}
