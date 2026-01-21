@@ -1,27 +1,31 @@
 pipeline {
     agent any
+
     stages {
         stage('git-pull') {
-           git branch: 'main', credentialsId: 'ssh-cred', url: 'https://github.com/PrathamSelokar/Jenkins.git'
+            steps {
+                git branch: 'main',
+                    credentialsId: 'ssh-cred',
+                    url: 'https://github.com/PrathamSelokar/Jenkins.git'
             }
         }
+
         stage('Build') {
             steps {
-                echo "build-sucess"
+                echo "build-success"
             }
         }
+
         stage('Test') {
             steps {
-                echo "test sucess"
+                echo "test-success"
             }
         }
+
         stage('Deploy') {
             steps {
-                echo "deploy sucess"
+                echo "deploy-success"
             }
         }
     }
-
 }
-
-
