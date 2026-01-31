@@ -28,7 +28,7 @@ pipeline {
                     sh '''
                     /opt/maven/bin/mvn sonar:sonar \
                     -Dsonar.projectKey=student-app \
-                    -Dsonar.host.url=http://<sonarqube-ip>:9000
+                    -Dsonar.host.url=http://<172.31.8.189>:9000
                     '''
                 }
             }
@@ -41,3 +41,4 @@ pipeline {
         }
     }
 }
+
