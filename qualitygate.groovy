@@ -26,7 +26,6 @@ pipeline {
                 withSonarQubeEnv('sonar-server') {
                     sh '''/opt/maven/bin/mvn sonar:sonar \\
                           -Dsonar.projectKey=my-student1 \\
-                          -Dsonar.host.url=http://13.251.81.239:9000 \\
                           -Dsonar.login=fc33af1c728a70dcf2db398dda2a61649acc3f58'''
                 }
             }
@@ -51,4 +50,5 @@ pipeline {
         }
     }
 }
+
 
