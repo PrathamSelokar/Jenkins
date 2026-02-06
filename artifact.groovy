@@ -22,7 +22,7 @@ pipeline {
         }
 
         
-         stage('SonarQube Analysis') {
+        stage('SonarQube Analysis') {
     steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
             withSonarQubeEnv('sonar-server') {
@@ -30,25 +30,17 @@ pipeline {
                 /opt/maven/bin/mvn sonar:sonar \
                 -Dsonar.projectKey=my-student1 \
                 -Dsonar.host.url=http://13.251.81.239:9000 \
-                -Dsonar.login=${SONAR_TOKEN}
+                -Dsonar.login=$SONAR_TOKEN
                 '''
+            }
+
+            timeout(time: 10, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: false
             }
         }
     }
 }
 
-
-
-        stage('Quality_gate') {
-            steps {
-
-               timeout(10) {
-               echo "wait for at list 10 min to perform next action"
-            }
-
-               waitForQualityGate true
-            }
-        }
 
         stage('Artifact_upload to_s3') {
            steps {
@@ -66,6 +58,7 @@ pipeline {
         }
     }
 }
+
 
 
 
