@@ -43,11 +43,13 @@ pipeline {
             }
         }
 
-          stage('Artifact_upload to_s3') {
-             steps {
-                 sh 'aws s3 cp target/studentapp-2.2-SNAPSHOT.war     s3://sonar-bucket-123'
-             }
-         }
+        stage('Artifact_upload to_s3') {
+           steps {
+        sh '''
+        aws s3 cp target/studentapp-2.2-SNAPSHOT.war s3://sonar-bucket-123/
+        '''
+          }
+       }
 
 
         stage('Deploy') {
@@ -57,4 +59,5 @@ pipeline {
         }
     }
 }
+
 
